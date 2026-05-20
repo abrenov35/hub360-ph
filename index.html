@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>HUB 360 LVH · Portail</title>
+  <title>HUB 360 - Pascale</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet"/>
@@ -147,7 +147,7 @@
   <header>
     <div class="logo">
       <span class="logo-mark">HUB<em></em>360</span>
-      <span class="logo-sub">LVH · Portail</span>
+      <span class="logo-sub">Pascale</span>
     </div>
     <div class="header-right">
       <div class="search-wrap">
@@ -285,9 +285,9 @@
       const r = await apiCall({ action: 'get' });
       if (r && r.sites) {
         sitesCache = r.sites;
-        localStorage.setItem('hub360_lvh_sites', JSON.stringify(sitesCache));
+        localStorage.setItem('hub360_pascale_sites', JSON.stringify(sitesCache));
       } else {
-        try { sitesCache = JSON.parse(localStorage.getItem('hub360_lvh_sites')) || []; } catch { sitesCache = []; }
+        try { sitesCache = JSON.parse(localStorage.getItem('hub360_pascale_sites')) || []; } catch { sitesCache = []; }
       }
       render(document.getElementById('searchInput').value);
     }
@@ -340,7 +340,7 @@
     async function deleteSite(id) {
       if (!confirm('Supprimer ce site ?')) return;
       sitesCache = sitesCache.filter(s => s.id !== id);
-      localStorage.setItem('hub360_lvh_sites', JSON.stringify(sitesCache));
+      localStorage.setItem('hub360_pascale_sites', JSON.stringify(sitesCache));
       render(document.getElementById('searchInput').value);
       await apiCall({ action: 'delete', id });
     }
@@ -387,7 +387,7 @@
         await apiCall({ action: 'add', id: newId, name, url, iconId: selectedIcon.id });
       }
 
-      localStorage.setItem('hub360_lvh_sites', JSON.stringify(sitesCache));
+      localStorage.setItem('hub360_pascale_sites', JSON.stringify(sitesCache));
       btn.disabled = false; btn.textContent = 'Enregistrer';
       closeModal();
       render(document.getElementById('searchInput').value);
@@ -397,7 +397,7 @@
     document.getElementById('delBtn').addEventListener('click', async () => {
       if (!editId || !confirm('Supprimer ?')) return;
       sitesCache = sitesCache.filter(s => s.id !== editId);
-      localStorage.setItem('hub360_lvh_sites', JSON.stringify(sitesCache));
+      localStorage.setItem('hub360_pascale_sites', JSON.stringify(sitesCache));
       closeModal();
       render(document.getElementById('searchInput').value);
       await apiCall({ action: 'delete', id: editId });
@@ -413,9 +413,9 @@
 
     // ── Dark mode ──
     const dt = document.getElementById('darkToggle');
-    function applyDark(on) { document.body.classList.toggle('dark',on); dt.textContent=on?'☀️':'🌙'; localStorage.setItem('hub360_lvh_dark',on?'1':'0'); }
+    function applyDark(on) { document.body.classList.toggle('dark',on); dt.textContent=on?'☀️':'🌙'; localStorage.setItem('hub360_pascale_dark',on?'1':'0'); }
     dt.addEventListener('click', () => applyDark(!document.body.classList.contains('dark')));
-    if (localStorage.getItem('hub360_lvh_dark')==='1') applyDark(true);
+    if (localStorage.getItem('hub360_pascale_dark')==='1') applyDark(true);
 
     // ── Recherche ──
     document.getElementById('searchInput').addEventListener('input', e => render(e.target.value));
